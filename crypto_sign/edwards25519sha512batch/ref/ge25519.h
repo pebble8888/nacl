@@ -10,7 +10,7 @@
 #define ge25519_add crypto_sign_edwards25519sha512batch_ge25519_add
 #define ge25519_double crypto_sign_edwards25519sha512batch_ge25519_double
 #define ge25519_scalarmult crypto_sign_edwards25519sha512batch_ge25519_scalarmult
-#define ge25519_scalarmult_base crypto_sign_edwards25519sha512batch_ge25519_scalarmult_base
+//#define ge25519_scalarmult_base crypto_sign_edwards25519sha512batch_ge25519_scalarmult_base
 
 typedef struct {
   fe25519 x;
@@ -29,6 +29,6 @@ void ge25519_double(ge25519 *r, const ge25519 *p);
 
 void ge25519_scalarmult(ge25519 *r, const ge25519 *p, const sc25519 *s);
 
-void ge25519_scalarmult_base(ge25519 *r, const sc25519 *s);
+//void ge25519_scalarmult_base(ge25519 *r, const sc25519 *s);
 
 #endif

@@ -20,7 +20,7 @@
 #include "crypto_uint32.h"
 
 typedef struct {
-  crypto_uint32 v[32]; 
+  uint32_t v[32]; 
 } fe25519;
 
 void fe25519_unpack(fe25519 *r, const unsigned char x[32]);

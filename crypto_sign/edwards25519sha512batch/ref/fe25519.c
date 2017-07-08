@@ -3,9 +3,10 @@
 #define WINDOWSIZE 4 /* Should be 1,2, or 4 */
 #define WINDOWMASK ((1<<WINDOWSIZE)-1)
 
+// 加算,減算後正規化
 static void reduce_add_sub(fe25519 *r)
 {
-  crypto_uint32 t;
+  uint32_t t;
   int i,rep;
 
   for(rep=0;rep<4;rep++)
@@ -121,15 +122,18 @@ void fe25519_cmov(fe25519 *r, const fe25519 *x, unsigned char b)
   for(i=0;i<32;i++) r->v[i] = nb * r->v[i] + b * x->v[i];
 }
 
+// odd or not
 unsigned char fe25519_getparity(const fe25519 *x)
 {
   fe25519 t;
+  // copy
   int i;
   for(i=0;i<32;i++) t.v[i] = x->v[i];
   freeze(&t);
   return t.v[0] & 1;
 }
 
+// set 1
 void fe25519_setone(fe25519 *r)
 {
   int i;
@@ -137,6 +141,7 @@ void fe25519_setone(fe25519 *r)
   for(i=1;i<32;i++) r->v[i]=0;
 }
 
+// set 0
 void fe25519_setzero(fe25519 *r)
 {
   int i;
@@ -173,7 +178,7 @@ void fe25519_sub(fe25519 *r, const fe25519 *x, const fe25519 *y)
 void fe25519_mul(fe25519 *r, const fe25519 *x, const fe25519 *y)
 {
   int i,j;
-  crypto_uint32 t[63];
+  uint32_t t[63];
   for(i=0;i<63;i++)t[i] = 0;
 
   for(i=0;i<32;i++)
